@@ -6,6 +6,4 @@ const store = configureStore({
     reducer: globalReducer
 });
 
-console.log(store.getState())
-
 export default store;

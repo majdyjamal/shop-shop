@@ -108,7 +108,7 @@ function Detail() {
           </p>
 
           <img
-            src={`/images/${currentProduct.image}`}
+            src={currentProduct.image ? `/images/${currentProduct.image}` : ''}
             alt={currentProduct.name}
           />
         </div>
