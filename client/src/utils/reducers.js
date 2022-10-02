@@ -1,4 +1,3 @@
-import { useReducer } from "react";
 import {
   UPDATE_PRODUCTS,
   ADD_TO_CART,
@@ -42,15 +41,18 @@ const reducer = (state = initialState, action) => {
       };
 
     case UPDATE_CART_QUANTITY:
+      let newCart = state.cart.map(product => {
+        const newProduct = { ...product };
+        if (action._id === newProduct._id) {
+          newProduct.purchaseQuantity = action.purchaseQuantity
+        }
+        return newProduct;
+      });
+
       return {
         ...state,
         cartOpen: true,
-        cart: state.cart.map(product => {
-          if (action._id === product._id) {
-            product.purchaseQuantity = action.purchaseQuantity
-          }
-          return product
-        })
+        cart: newCart,
       };
 
     case REMOVE_FROM_CART:
